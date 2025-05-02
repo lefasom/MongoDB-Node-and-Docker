@@ -1,0 +1,26 @@
+version: "3.8"
+services:
+  mongo:
+    image: mongo
+    container_name: monguito
+    ports:
+      - "27017:27017"
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: lefasomriverplate
+      MONGO_INITDB_ROOT_PASSWORD: NWIenfVHj01yRhYh
+    networks:
+      - mired
+
+  app:
+    build:
+      context: .
+    container_name: chanchito
+    ports:
+      - "3000:3000"
+    depends_on:
+      - mongo
+    networks:
+      - mired
+
+networks:
+  mired:
